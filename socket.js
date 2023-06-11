@@ -27,6 +27,23 @@ io.on("connection", (socket) => {
 
   //  
 
+  socket.on("send",(chatMessage)=>{
+   // console.log(chatMessage);
+// it will send to all the connected users
+/*
+  io.emit("chat", chatMessage, (err, responses) => {
+   
+    });
+    */
+
+    // it will send to all the clients except the user who is sending it
+    socket.broadcast.emit("chat", chatMessage, (err, responses) => {
+   
+    });
+    
+
+  })
+
   socket.on("realtime",(data)=>{
     setInterval(()=>{
     
